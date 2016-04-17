@@ -1,0 +1,55 @@
+h1 Your Points
+h3 Please note that the points from a week will only get added to your totals if the week has both a start weight and an end weight. That was the easiest way I could think of to keep my scoring algorithm from automatically giving you points for not eating sweets in all of the future weeks.
+.weekly-points
+  uib-tabset(active="active")
+    uib-tab(index="$index + 1", ng-repeat="week in weeks" heading="Week {{$index + 1}}" active="tab.active")
+      // Add the totals for each week
+      block table-block
+        - var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        table
+          thead
+            tr
+              th
+              th(ng-repeat="day in days") {{day}}
+          tbody
+            tr
+              td Did you drink at least 64 oz of water?
+              td(ng-repeat="day in days")
+                input(type="checkbox", ng-model="week.days[$index].water" ng-change="update_totals();")
+            tr
+              td How many servings of fruit did you eat?
+              td(ng-repeat="day in days")
+                input(type="number", min="0", ng-model="week.days[$index].fruits" ng-change="update_totals();")
+            tr
+              td How many servings of vegetables did you eat?
+              td(ng-repeat="day in days")
+                input(type="number", min="0", ng-model="week.days[$index].vegetables" ng-change="update_totals();")
+            tr
+              td How many sweets did you eat?
+              td(ng-repeat="day in days")
+                input(type="number", min="0" ng-model="week.days[$index].sweets" ng-change="update_totals();")
+            tr
+              td Did you stop eating before 9 PM
+              td(ng-repeat="day in days")
+                input(type="checkbox", ng-model="week.days[$index].nine" ng-change="update_totals();")
+            tr
+              td Did you complete your personal development?
+              td(ng-repeat="day in days")
+                input(type="checkbox", ng-model="week.days[$index].personal_development" ng-change="update_totals();")
+            tr
+              td Did you complete at least 30 minutes of exercise?
+              td(ng-repeat="day in days")
+                input(type="checkbox", ng-model="week.days[$index].exercise" ng-change="update_totals();")
+      .weight
+        label Your starting weight for the week:
+        input(ng-if="$index==0", type="number", min="0", ng-model="week.start_weight" ng-change="update_totals();")
+        span(ng-if="$index != 0") {{week.start_weight}}
+      .weight
+        label Your end weight for the week:
+        input(type="number", min="0", ng-model="week.end_weight", ng-change="update_totals()")
+
+      .total-weekly-points
+        label Total points for the week:
+        .total-weekly-points {{week.points || 0}}
+  .total-points
+    label Your total points for the challenge: {{total_points}}

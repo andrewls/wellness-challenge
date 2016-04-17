@@ -1,0 +1,11 @@
+
+tr {
+
+  &:nth-child(odd) {
+    background: #eeeeee;
+  }
+
+  td {
+    padding: 10px;
+  }
+}
