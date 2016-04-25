@@ -47,6 +47,21 @@ h3 Please note that the points from a week will only get added to your totals if
       .weight
         label Your end weight for the week:
         input(type="number", min="0", ng-model="week.end_weight", ng-change="update_totals()")
+      .waist(ng-if="$index == 0 || $index == 3 || $index == 7")
+        label Waist measurement (in inches)
+        input(type="number", min="0", ng-model="week.waist", ng-change="update_totals()")
+      .hip(ng-if="$index == 0 || $index == 3 || $index == 7")
+        label Hip measurement (in inches)
+        input(type="number", min="0", ng-model="week.hip", ng-change="update_totals()")
+      .chest(ng-if="$index == 0 || $index == 3 || $index == 7")
+        label Chest measurement (in inches)
+        input(type="number", min="0", ng-model="week.chest", ng-change="update_totals()")
+      .arm(ng-if="$index == 0 || $index == 3 || $index == 7")
+        label Arm measurement (in inches)
+        input(type="number", min="0", ng-model="week.arm", ng-change="update_totals()")
+      .thigh(ng-if="$index == 0 || $index == 3 || $index == 7")
+        label Thigh measurement (in inches)
+        input(type="number", min="0", ng-model="week.thigh", ng-change="update_totals()")
 
       .total-weekly-points
         label Total points for the week:

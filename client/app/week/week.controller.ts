@@ -62,6 +62,11 @@ function makeWeekFromWeekPoints(weekPoints: WeekPoints) {
   week.user_id = weekPoints.user_id;
   week.id = weekPoints.id || weekPoints._id;
   week._id = week.id;
+  week.waist = weekPoints.waist;
+  week.hip = weekPoints.hip;
+  week.chest = weekPoints.chest;
+  week.arm = weekPoints.arm;
+  week.thigh = weekPoints.thigh;
   if (weekPoints.$update) week.$update = weekPoints.$update;
   if (weekPoints.$save) week.$save = weekPoints.$save;
   if (weekPoints.$remove) week.$remove = weekPoints.$remove;
@@ -132,7 +137,6 @@ class WeekController {
         week.score();
         console.log('Updating week', week);
         week.$update();
-        // Week.update({id: week._id}, week);
       }
       var sum = 0;
       for (var k = 0; k < $scope.weeks.length; k++) {
