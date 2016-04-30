@@ -113,6 +113,7 @@ class MainController {
             else {
               rankings[i][j].rank = ++current_rank;
             }
+            current_score = rankings[i][j].score;
           }
         }
 
